@@ -34,7 +34,7 @@ public class SmsReceiver extends BroadcastReceiver {
         }
 
         if (! mContext.hasActiveCatalystInstance()) {
-            Log.e("SmsReceiver: context does not have activeCatalystInstance")
+            Log.e("SmsReceiver: context does not have activeCatalystInstance");
             return;
         }
 
