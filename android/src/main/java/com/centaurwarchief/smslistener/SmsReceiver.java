@@ -16,7 +16,7 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 public class SmsReceiver extends BroadcastReceiver {
     private ReactApplicationContext mContext;
 
-    private static final String EVENT = "com.centaurwarchief.smslistener:smsReceived";
+    private static final String EVENT = "SMS_RECEIVED";
 
     public SmsReceiver() {
         super();
@@ -27,11 +27,14 @@ public class SmsReceiver extends BroadcastReceiver {
     }
 
     private void receiveMessage(SmsMessage message, String body) {
+        Log.d(String.format("%s: %s", message.getOriginatingAddress(), message.getMessageBody(), message.getTimestampMillis()))
         if (mContext == null) {
+            Log.e("SmsReceiver: React Context is null")
             return;
         }
 
         if (! mContext.hasActiveCatalystInstance()) {
+            Log.e("SmsReceiver: context does not have activeCatalystInstance")
             return;
         }
 
