@@ -27,14 +27,17 @@ public class SmsReceiver extends BroadcastReceiver {
     }
 
     private void receiveMessage(SmsMessage message, String body) {
-        Log.d(String.format("%s: %s", message.getOriginatingAddress(), message.getMessageBody(), message.getTimestampMillis()));
+        Log.d(
+            SmsListenerPackage.TAG,
+            String.format("%s: %s", message.getOriginatingAddress(), message.getMessageBody(), message.getTimestampMillis())
+        );
         if (mContext == null) {
-            Log.e("SmsReceiver: React Context is null");
+            Log.e(SmsListenerPackage.TAG,"SmsReceiver: React Context is null");
             return;
         }
 
         if (! mContext.hasActiveCatalystInstance()) {
-            Log.e("SmsReceiver: context does not have activeCatalystInstance");
+            Log.e(SmsListenerPackage.TAG, "SmsReceiver: context does not have activeCatalystInstance");
             return;
         }
 
